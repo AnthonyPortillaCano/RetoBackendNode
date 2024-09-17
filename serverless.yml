@@ -1,0 +1,97 @@
+service: star-wars-api
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    DB_TABLE: StarWarsTable
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:PutItem"
+        - "dynamodb:GetItem"
+        - "dynamodb:Scan"
+      Resource: "arn:aws:dynamodb:*:*:table/${self:provider.environment.DB_TABLE}"
+functions:
+  createCharacter:
+    handler: src/handler.createCharacter
+    events:
+      - http:
+          path: character
+          method: post
+    documentation:
+      summary: "Create a new character"
+      description: "Creates a new character in the database."
+      tags:
+        - Character
+      requestBody:
+        description: "Character data"
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/CreateCharacterRequest'
+      responses:
+        '200':
+          description: "Character successfully created"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  message:
+                    type: string
+  listCharacters:
+    handler: src/handler.listCharacters
+    events:
+      - http:
+          path: characters
+          method: get
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+    - tests/**
+
+plugins:
+  - serverless-offline
+  - serverless-openapi-documentation
+  - serverless-plugin-typescript
+
+custom:
+  documentation:
+    version: '1'
+    title: 'My API'
+    description: 'This is my API documentation'
+    models:
+      - name: CreateCharacterRequest
+        description: 'Request body for creating a character'
+        contentType: 'application/json'
+        schema:
+          type: object
+          properties:
+            name:
+              type: string
+            age:
+              type: integer
+            gender:
+              type: string
+            homePlanet:
+              type: strin
+
+resources:
+  Resources:
+    StarWarsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.DB_TABLE}
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST

@@ -1,0 +1,48 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Dependency directories
+jspm_packages/
+typings/
+
+# TypeScript compiled files
+dist/
+build/
+*.js
+*.d.ts
+*.js.map
+
+# Environment variables
+.env
+.env.local
+.env.test
+.env.production
+
+# AWS and serverless
+.serverless/
+.aws-sam/
+.swp/
+
+# IDE or Editor specific
+.vscode/
+.idea/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Coverage directory (for testing)
+coverage/
+
+# Temp files
+*.tmp
+*.swp
+
+# Swagger docs
+swagger-output.json
+swagger.yaml

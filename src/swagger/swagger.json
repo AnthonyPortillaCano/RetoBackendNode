@@ -1,0 +1,30 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Star Wars API",
+      "version": "1.0.0",
+      "description": "API para crear y obtener personajes de Star Wars"
+    },
+    "paths": {
+      "/character": {
+        "post": {
+          "summary": "Crear un nuevo personaje",
+          "responses": {
+            "200": {
+              "description": "Personaje creado"
+            }
+          }
+        }
+      },
+      "/characters": {
+        "get": {
+          "summary": "Obtener todos los personajes",
+          "responses": {
+            "200": {
+              "description": "Lista de personajes"
+            }
+          }
+        }
+      }
+    }
+  }  
