@@ -4,7 +4,7 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-     "test": "jest"
+    "test": "jest"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -17,6 +17,7 @@
     "aws-sdk": "^2.1691.0",
     "axios": "^1.7.7",
     "express": "^4.21.0",
+    "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.3",
     "uuid": "^10.0.0"
   },
@@ -45,8 +46,8 @@
   "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
   "license": "MIT",
   "keywords": [],
- "jest": {
-  "preset": "ts-jest",
-  "testEnvironment": "node"
-}
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  }
 }
